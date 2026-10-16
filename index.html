@@ -90,7 +90,7 @@
     function calculate(input) {
       const {mL, mH, FA, FB, T} = input;
       for (const key of Object.keys(DEFAULTS)) {
-        if (typeof input[key] !== 'number' || !Number.isFinite(input[key]) || input[key] <= 0) {
+        if (typeof input[key] !== 'number' || !Number.isFinite(input[key]) || input[key] < 0) {
           const error = new RangeError(LABELS[key] + ' must be a finite number greater than zero.');
           error.field = key; throw error;
         }
