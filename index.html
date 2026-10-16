@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Estimate equilibrium isotope separation factors from effective masses, force constants, and temperature using a harmonic zero-point-energy model.">
+  <meta name="theme-color" content="#154d46">
+  <title>Isotope Effect Calculator · Zero-point energy</title>
+  <style>
+    :root{--paper:#f5f5ef;--white:#fff;--ink:#202e2b;--muted:#5c6e68;--line:#dce4dc;--green:#154d46;--mint:#e7efe8;--orange:#a95731;--red:#a02e25;--radius:18px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}button,input{font:inherit}a{color:var(--green);text-underline-offset:4px}button,a,input,summary{-webkit-tap-highlight-color:transparent}button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #bc7a43;outline-offset:4px}button{cursor:pointer}button:disabled{opacity:.45;cursor:not-allowed}sub,sup{font-size:.72em}h1,h2,h3,p{margin:0}h1{font-size:clamp(2.25rem,5vw,3.6rem);line-height:1.06;letter-spacing:-.045em;font-weight:600}h2{font-size:1.3rem;letter-spacing:-.02em;font-weight:650}h3{font-size:1rem}p+p{margin-top:12px}.wrap{max-width:1160px;margin:auto;padding:0 32px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:25px;padding-bottom:22px;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:12px;font-size:.85rem;letter-spacing:.05em;font-weight:700}.brand svg{width:31px;height:31px}.topbar a{font-size:.86rem;text-decoration:none}.hero{padding:46px 0 32px;display:flex;gap:32px;align-items:flex-end;justify-content:space-between}.hero h1{max-width:740px}.hero p{max-width:650px;margin-top:18px;color:var(--muted);font-size:1.05rem}.eyebrow{font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;font-weight:750;color:var(--green);margin-bottom:16px}.model-tag{border:1px solid var(--line);padding:9px 13px;border-radius:50px;white-space:nowrap;font-size:.76rem;color:var(--muted);margin-bottom:4px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px;align-items:start}.card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:27px}.section-head{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:22px}.step{color:var(--muted);font-size:.75rem;font-weight:650;letter-spacing:.08em}.input-grid{display:grid;grid-template-columns:1fr 1fr;gap:21px 18px}.field label{display:block;font-size:.85rem;font-weight:650;margin-bottom:7px}.symbol{font-family:Georgia,"Times New Roman",serif;font-style:italic;color:var(--muted);margin-left:4px}.input-box{position:relative}.input-box input{width:100%;min-height:52px;padding:12px 72px 12px 13px;border:1px solid #c6d3ca;border-radius:9px;background:#fcfdfa;color:var(--ink);font-variant-numeric:tabular-nums;appearance:textfield;-moz-appearance:textfield}.input-box input::-webkit-inner-spin-button,.input-box input::-webkit-outer-spin-button{-webkit-appearance:none;margin:0}.input-box input:focus{border-color:var(--green)}.input-box .unit{position:absolute;right:13px;top:15px;color:var(--muted);font-size:.8rem;pointer-events:none}.field small{display:block;color:var(--muted);font-size:.73rem;margin-top:6px;line-height:1.5}.temperature{grid-column:1/-1;border-top:1px solid var(--line);padding-top:19px;display:grid;grid-template-columns:1fr 1fr;gap:18px;align-items:center}.temperature p{font-size:.77rem;color:var(--muted);padding-top:17px}.input-note{margin-top:18px;color:var(--muted);font-size:.75rem}.button-row{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}.button{background:var(--green);color:white;border:1px solid var(--green);padding:10px 15px;border-radius:8px;font-size:.82rem;font-weight:650}.button.secondary{color:var(--green);background:white;border-color:#c6d3ca}.button:hover{filter:brightness(.94)}.error{background:#fff1ec;color:var(--red);border-radius:8px;padding:12px;margin-top:17px;font-size:.82rem}.error[hidden]{display:none}input[aria-invalid=true]{border-color:var(--red)}.result{background:var(--green);color:#fff;border-color:var(--green)}.result .step{color:#bad0c6}.result-title{font-size:.8rem;color:#c3d8ce}.alpha{display:flex;align-items:baseline;gap:13px;margin:6px 0 8px}.alpha-symbol{font:italic 2.1rem Georgia,serif;color:#bbd6c7}.alpha output{font-size:clamp(2.1rem,4.3vw,3.4rem);line-height:1.2;letter-spacing:-.035em;font-weight:550;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.preference{color:#d5e6db;font-size:.85rem;min-height:42px;margin-bottom:20px}.result-stats{display:grid;grid-template-columns:1fr 1fr;gap:17px 20px;border-top:1px solid #44726a;padding-top:19px}.stat dt{font-size:.74rem;color:#bbd2c8}.stat dd{margin:4px 0 0;font-size:1.1rem;font-variant-numeric:tabular-nums;overflow-wrap:anywhere}.stat dd small{font-size:.72rem;color:#c2d9cd}.convention{border-top:1px solid #44726a;margin-top:19px;padding-top:15px;font-size:.8rem;color:#c3d8ce}.convention strong{color:#fff;font-weight:550}.chart-card{margin-top:22px;padding:21px 25px 12px}.chart-top{display:flex;justify-content:space-between;gap:10px;font-size:.75rem;color:var(--muted)}.chart-top strong{font-weight:650;color:var(--ink)}#temperature-chart{display:block;width:100%;height:auto;max-height:190px;margin-top:10px}.wide{margin-top:24px}.subtle{color:var(--muted);font-size:.82rem}.table-wrap{overflow-x:auto}table{border-collapse:collapse;width:100%;font-size:.84rem;font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}th,td{padding:13px 15px;border-bottom:1px solid var(--line)}th{font-size:.73rem;color:var(--muted);font-weight:550}th:first-child,td:first-child{text-align:left;padding-left:0}th:last-child,td:last-child{padding-right:0}tbody tr:last-child td{border-bottom:0}.pill{display:inline-block;min-width:24px;text-align:center;border-radius:4px;background:var(--mint);color:var(--green);font-size:.72rem;padding:2px 5px;margin-right:6px}.footnote{font-size:.75rem;color:var(--muted);margin-top:14px}.theory{margin:42px 0}.theory-intro{display:flex;align-items:baseline;justify-content:space-between;gap:20px;margin-bottom:20px}.equations{display:grid;grid-template-columns:1fr 1fr;gap:18px}.equation{padding:24px;background:#edf0e8;border:1px solid #dce3d6;border-radius:12px;min-width:0}.eq-title{display:flex;align-items:baseline;gap:10px;font-weight:650;font-size:.88rem}.eq-num{color:var(--orange);font-size:.75rem}.equation p{font-size:.8rem;color:var(--muted);margin-top:12px}.math{overflow-x:auto;padding:13px 0 4px}.math math{font-size:1.2rem;white-space:nowrap}.exchange{font-family:Georgia,serif;font-size:1.05rem;color:var(--green);padding-top:12px}.assumptions{margin-top:20px;padding:22px 25px;border-left:3px solid #b16a41;background:#eeeee5;border-radius:0 10px 10px 0}.assumptions p{font-size:.84rem;color:#4d5e55;margin-top:7px}.details{margin-top:20px;border-top:1px solid var(--line);padding-top:17px;font-size:.8rem;color:var(--muted)}.details summary{cursor:pointer;color:var(--green);font-weight:650}.details p{margin-top:12px}footer{border-top:1px solid var(--line);padding:23px 0 30px;display:flex;gap:16px;justify-content:space-between;color:var(--muted);font-size:.73rem}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.status{font-size:.75rem;color:var(--muted);align-self:center}.invalid .result-stats,.invalid .convention{opacity:.55}@media(max-width:800px){.wrap{padding:0 20px}.hero{padding-top:32px;display:block}.model-tag{display:inline-block;margin-top:20px}.grid,.equations{grid-template-columns:1fr}.card{padding:22px}.chart-card{padding:20px}.theory-intro{display:block}.theory-intro p{margin-top:7px}.alpha output{font-size:3.2rem}.preference{min-height:0}.topbar{padding-top:20px;padding-bottom:18px}footer{flex-direction:column;gap:5px}}@media(max-width:420px){.wrap{padding:0 14px}.input-grid{gap:18px 12px}.card{padding:19px}.field label{font-size:.77rem}.input-box input{padding-right:58px;font-size:.95rem}.input-box .unit{right:9px;font-size:.7rem}.temperature{gap:12px}.alpha output{font-size:2.65rem}.topbar a{font-size:.77rem}.brand{font-size:.77rem}.result-stats{gap:14px}.stat dd{font-size:1rem}}@media print{body{background:#fff}.wrap{max-width:none;padding:0}.topbar a,.button-row,.chart-card{display:none}.hero{padding:20px 0}.hero h1{font-size:2rem}.card{break-inside:avoid}.result{background:#fff;color:#111}.result .step,.result-title,.preference,.stat dt,.stat dd small,.convention,.convention strong,.alpha-symbol{color:#333}.equation,.assumptions{background:white}.theory{margin:20px 0}.equations{gap:10px}footer{padding:10px 0}}
+    [hidden]{display:none!important}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="topbar">
+      <div class="brand"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="4" fill="#154d46"/><ellipse cx="20" cy="20" rx="17" ry="7" transform="rotate(-40 20 20)" stroke="#154d46" stroke-width="1.5"/><ellipse cx="20" cy="20" rx="17" ry="7" transform="rotate(40 20 20)" stroke="#154d46" stroke-width="1.5"/></svg>ISOTOPE / TOOLS</div>
+      <a href="#theory">Equations &amp; assumptions ↗</a>
+    </header>
+    <main>
+      <section class="hero" aria-labelledby="title">
+        <div><div class="eyebrow">Equilibrium isotope fractionation</div><h1 id="title">Isotope separation<br>from zero-point energy.</h1><p>Calculate a separation factor from two effective masses, two force constants, and temperature.</p></div>
+        <span class="model-tag">Harmonic · Zero-point energy</span>
+      </section>
+
+      <div class="grid">
+        <section class="card" aria-labelledby="inputs-heading">
+          <div class="section-head"><h2 id="inputs-heading">Define your system</h2><span class="step">01 / INPUTS</span></div>
+          <form id="calculator" novalidate>
+            <div class="input-grid">
+              <div class="field"><label for="mL">Light effective mass <span class="symbol">m<sub>L</sub></span></label><div class="input-box"><input id="mL" name="mL" type="number" step="any" value="6" required aria-describedby="mass-help"><span class="unit">g/mol</span></div></div>
+              <div class="field"><label for="mH">Heavy effective mass <span class="symbol">m<sub>H</sub></span></label><div class="input-box"><input id="mH" name="mH" type="number" step="any" value="7" required aria-describedby="mass-help"><span class="unit">g/mol</span></div></div>
+              <div class="field"><label for="FA">State A force constant <span class="symbol">F<sub>A</sub></span></label><div class="input-box"><input id="FA" name="FA" type="number" step="any" value="100" required><span class="unit">N/m</span></div><small>Reference environment</small></div>
+              <div class="field"><label for="FB">State B force constant <span class="symbol">F<sub>B</sub></span></label><div class="input-box"><input id="FB" name="FB" type="number" step="any" value="200" required><span class="unit">N/m</span></div><small>Comparison environment</small></div>
+              <div class="temperature"><div class="field"><label for="T">Temperature <span class="symbol">T</span></label><div class="input-box"><input id="T" name="T" type="number" step="any" value="298.15" required><span class="unit">K</span></div></div><p id="celsius">25.00 °C<br>Absolute temperature in kelvin.</p></div>
+            </div>
+            <p class="input-note" id="mass-help">Use effective or reduced molar masses for the vibration modeled. The same mass pair is used in both states. Default values are illustrative.</p>
+            <div id="input-error" class="error" role="alert" hidden></div>
+            <div class="button-row"><button class="button" type="submit">Calculate factor</button><button class="button secondary" id="swap" type="button">Swap A ⇄ B</button><button class="button secondary" id="reset" type="button">Reset</button></div>
+          </form>
+        </section>
+
+        <div>
+          <section class="card result" id="result-card" aria-labelledby="result-heading">
+            <div class="section-head"><h2 id="result-heading">Separation factor</h2><span class="step">02 / RESULT</span></div>
+            <div aria-live="polite" aria-atomic="true"><div class="result-title">α<sub>B/A</sub> = (H/L)<sub>B</sub> / (H/L)<sub>A</sub></div><div class="alpha"><span class="alpha-symbol">α</span><output id="alpha">—</output></div><p id="preference" class="preference">Enter valid inputs to calculate.</p></div>
+            <dl class="result-stats">
+              <div class="stat"><dt>ΔΔG<sub>ZPE</sub> <small> / J mol⁻¹</small></dt><dd id="ddg">—</dd></div>
+              <div class="stat"><dt>Reverse factor · α<sub>A/B</sub></dt><dd id="reciprocal">—</dd></div>
+              <div class="stat"><dt>ln α<sub>B/A</sub></dt><dd id="lnalpha">—</dd></div>
+              <div class="stat"><dt>1000 ln α<sub>B/A</sub> <small> / ‰</small></dt><dd id="per-mil">—</dd></div>
+            </dl>
+            <p class="convention"><strong>α &gt; 1:</strong> heavy isotope favors B.<br><strong>α &lt; 1:</strong> heavy isotope favors A.</p>
+          </section>
+          <section class="card chart-card" aria-label="Temperature dependence"><div class="chart-top"><strong>Temperature dependence</strong><span>1000 ln α / ‰</span></div><svg id="temperature-chart" viewBox="0 0 460 155" role="img" aria-labelledby="chart-title chart-desc"><title id="chart-title">Separation factor versus temperature</title><desc id="chart-desc">Zero-point-energy prediction at fixed masses and force constants. The marked point is the entered temperature.</desc><g id="chart-content"></g></svg><p id="chart-empty" class="subtle" hidden>Enter valid inputs to view the curve.</p></section>
+        </div>
+      </div>
+
+      <section class="card wide" aria-labelledby="energies-heading">
+        <div class="section-head"><h2 id="energies-heading">Inside the calculation</h2><span class="step">03 / ENERGIES</span></div>
+        <div class="table-wrap"><table><caption class="sr-only">Mass, wavenumber and zero-point energy for each isotope in each state.</caption><thead><tr><th scope="col">Isotope / state</th><th scope="col">Mass / kg</th><th scope="col">Wavenumber / cm⁻¹</th><th scope="col">ZPE / J per oscillator</th><th scope="col">ZPE / kJ mol⁻¹</th></tr></thead><tbody id="energy-rows"></tbody></table></div>
+        <p class="footnote">Wavenumber ν̃ = √(F/M)/(2πc), using c in cm s⁻¹. Displayed values are rounded; calculations use full floating-point precision.</p>
+        <div class="button-row"><button class="button secondary" id="download" type="button">Download results (.csv)</button><button class="button secondary" id="copy" type="button">Copy summary</button><span id="action-status" class="status" role="status"></span></div>
+      </section>
+
+      <section id="theory" class="theory" aria-labelledby="theory-heading">
+        <div class="theory-intro"><h2 id="theory-heading">From mass to separation factor</h2><p class="subtle">One effective harmonic mode in each environment.</p></div>
+        <div class="equations">
+          <article class="equation"><h3 class="eq-title"><span class="eq-num">01</span> Convert molar mass to oscillator mass</h3><div class="math"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msub><mi>M</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msub><mi>m</mi><mi>i</mi></msub><mo>×</mo><msup><mn>10</mn><mrow><mo>−</mo><mn>3</mn></mrow></msup></mrow><msub><mi>N</mi><mi>A</mi></msub></mfrac></math></div><p>m<sub>i</sub> is in g mol⁻¹; M<sub>i</sub> is in kg per oscillator. N<sub>A</sub> is Avogadro’s constant. Multiplying by 10⁻³ alone gives kg mol⁻¹, so division by N<sub>A</sub> is essential.</p></article>
+          <article class="equation"><h3 class="eq-title"><span class="eq-num">02</span> Calculate zero-point energies</h3><div class="math"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msub><mi>E</mi><mrow><mi>i</mi><mo>,</mo><mi>s</mi></mrow></msub><mo>=</mo><mfrac><mi>ℏ</mi><mn>2</mn></mfrac><msqrt><mfrac><msub><mi>F</mi><mi>s</mi></msub><msub><mi>M</mi><mi>i</mi></msub></mfrac></msqrt><mo>,</mo><mspace width="1em"/><msub><mi>G</mi><mrow><mi>i</mi><mo>,</mo><mi>s</mi></mrow></msub><mo>≈</mo><msub><mi>N</mi><mi>A</mi></msub><msub><mi>E</mi><mrow><mi>i</mi><mo>,</mo><mi>s</mi></mrow></msub></math></div><p>i = L or H; s = A or B. F<sub>s</sub> is in N m⁻¹. E is in J per oscillator; G is approximated by the molar ZPE in J mol⁻¹. ℏ = h/(2π).</p></article>
+          <article class="equation"><h3 class="eq-title"><span class="eq-num">03</span> Evaluate the isotope-exchange energy</h3><div class="exchange">H<sub>A</sub> + L<sub>B</sub> ⇌ H<sub>B</sub> + L<sub>A</sub></div><div class="math"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mi>ΔΔG</mi><mo>=</mo><mo>(</mo><msub><mi>G</mi><mrow><mi>H</mi><mo>,</mo><mi>B</mi></mrow></msub><mo>−</mo><msub><mi>G</mi><mrow><mi>H</mi><mo>,</mo><mi>A</mi></mrow></msub><mo>)</mo><mo>−</mo><mo>(</mo><msub><mi>G</mi><mrow><mi>L</mi><mo>,</mo><mi>B</mi></mrow></msub><mo>−</mo><msub><mi>G</mi><mrow><mi>L</mi><mo>,</mo><mi>A</mi></mrow></msub><mo>)</mo></math></div><p>Here ΔΔG is the standard molar free energy of the written exchange, approximated solely by its ZPE contribution. A negative value favors heavy-isotope transfer from A to B.</p></article>
+          <article class="equation"><h3 class="eq-title"><span class="eq-num">04</span> Convert energy to an equilibrium ratio</h3><div class="math"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><msub><mi>α</mi><mrow><mi>B</mi><mo>/</mo><mi>A</mi></mrow></msub><mo>=</mo><mfrac><msub><mrow><mo>(</mo><mi>H</mi><mo>/</mo><mi>L</mi><mo>)</mo></mrow><mi>B</mi></msub><msub><mrow><mo>(</mo><mi>H</mi><mo>/</mo><mi>L</mi><mo>)</mo></mrow><mi>A</mi></msub></mfrac><mo>≈</mo><mi>exp</mi><mo>(</mo><mo>−</mo><mfrac><mi>ΔΔG</mi><mrow><mi>R</mi><mi>T</mi></mrow></mfrac><mo>)</mo></math></div><p>T is in kelvin and R = N<sub>A</sub>k<sub>B</sub>. The isotope ratios are interpreted as activity ratios, or composition ratios for ideal mixing. Exchanging A and B gives the reciprocal factor.</p></article>
+        </div>
+        <aside class="assumptions"><h3>What this estimate includes</h3><p>This is a single-mode, harmonic, ZPE-only approximation to equilibrium isotope fractionation. Each state has one positive force constant, shared by the two isotopes; the effective mass pair is the same in both states. For a diatomic stretch, use the reduced molar mass μ = m₁m₂/(m₁ + m₂) for each isotopologue.</p><p>Thermally excited vibrations, other normal modes, rotational and translational terms, anharmonicity, and nonideal activities are omitted. These can change the magnitude and even the direction of actual fractionation. The result is an equilibrium estimate, not a kinetic isotope effect or a full prediction of experimental separation performance.</p><p>The plotted 1/T dependence belongs to this ZPE-only approximation. At temperatures where vibrational excitation matters, use full partition functions for a quantitative equilibrium prediction.</p></aside>
+        <details class="details"><summary>Constants, compact equation &amp; references</summary><p>h = 6.62607015 × 10⁻³⁴ J s; N<sub>A</sub> = 6.02214076 × 10²³ mol⁻¹; k<sub>B</sub> = 1.380649 × 10⁻²³ J K⁻¹; c = 299792458 m s⁻¹. These SI defining values are exact. R = N<sub>A</sub>k<sub>B</sub>.</p><p>Equivalent expression used for the calculation:<br>ln α<sub>B/A</sub> = [ℏ/(2k<sub>B</sub>T)] (√F<sub>B</sub> − √F<sub>A</sub>) (1/√M<sub>L</sub> − 1/√M<sub>H</sub>).</p><p>For multiple independent modes, sum their ΔΔG contributions before exponentiating. A general normal-mode treatment may require masses that differ between states, beyond this calculator’s inputs.</p><p>References: <a href="https://physics.nist.gov/cuu/Constants/" target="_blank" rel="noopener noreferrer">NIST physical constants</a>; <a href="https://goldbook.iupac.org/terms/view/I03343" target="_blank" rel="noopener noreferrer">IUPAC: isotopic fractionation factor</a>. The approximation and the B/A convention are specified above.</p></details>
+      </section>
+    </main>
+    <footer><span>Isotope Effect Calculator · ZPE model</span><span>Calculations run in your browser. Works offline after download.</span></footer>
+    <noscript><p>Please enable JavaScript to use the calculator. The equations above remain available.</p></noscript>
+  </div>
+  <script>
+  'use strict';
+  (() => {
+    const H = 6.62607015e-34, NA = 6.02214076e23, KB = 1.380649e-23;
+    const HBAR = H / (2 * Math.PI), R = NA * KB, C_CM = 29979245800;
+    const DEFAULTS = Object.freeze({mL:6, mH:7, FA:100, FB:200, T:298.15});
+    const LABELS = {mL:'Light effective mass', mH:'Heavy effective mass', FA:'State A force constant', FB:'State B force constant', T:'Temperature'};
+
+    function calculate(input) {
+      const {mL, mH, FA, FB, T} = input;
+      for (const key of Object.keys(DEFAULTS)) {
+        if (typeof input[key] !== 'number' || !Number.isFinite(input[key]) || input[key] <= 0) {
+          const error = new RangeError(LABELS[key] + ' must be a finite number greater than zero.');
+          error.field = key; throw error;
+        }
+      }
+      if (mH < mL) { const error = new RangeError('Heavy effective mass must be greater than or equal to light effective mass.'); error.field = 'mH'; throw error; }
+      const ML = mL * 1e-3 / NA, MH = mH * 1e-3 / NA;
+      const energies = [];
+      for (const [state, force] of [['A', FA], ['B', FB]]) {
+        for (const [isotope, mass] of [['L', ML], ['H', MH]]) {
+          // sqrt(F)/sqrt(M) avoids overflow in the intermediate ratio F/M.
+          const omega = Math.sqrt(force) / Math.sqrt(mass);
+          const zpe = 0.5 * HBAR * omega;
+          energies.push({state, isotope, mass, omega, wavenumber:omega/(2*Math.PI*C_CM), zpe, molarZpe:zpe*NA});
+        }
+      }
+      // Rationalized differences reduce cancellation for nearby force constants and masses.
+      const sqrtForceDiff = (FB - FA) / (Math.sqrt(FB) + Math.sqrt(FA));
+      const invMassDiff = ((mH - mL) / mH) / (Math.sqrt(ML) * (1 + Math.sqrt(mL / mH)));
+      const ddg = -0.5 * HBAR * NA * sqrtForceDiff * invMassDiff;
+      const lnAlpha = -(ddg / R) / T;
+      if (![ML,MH].every(x => Number.isFinite(x) && x > 0) ||
+          !energies.every(e => [e.omega,e.wavenumber,e.zpe,e.molarZpe].every(x => Number.isFinite(x) && x > 0)) ||
+          !Number.isFinite(ddg) || !Number.isFinite(lnAlpha)) {
+        throw new RangeError('These inputs exceed the supported numerical range. Use less extreme values.');
+      }
+      return {input:{mL,mH,FA,FB,T}, ML,MH,energies,ddg,lnAlpha,alpha:Math.exp(lnAlpha),reciprocal:Math.exp(-lnAlpha)};
+    }
+
+    function number(value, digits=7) {
+      if (!Number.isFinite(value)) return 'Outside numeric range';
+      if (value === 0) return '0';
+      const abs = Math.abs(value);
+      return abs >= 1e7 || abs < 1e-4 ? value.toExponential(digits-1) : String(Number(value.toPrecision(digits)));
+    }
+    function factorFromLog(log) {
+      if (Math.abs(log) > 1e6) return 'exp(' + number(log) + ')';
+      const value = Math.exp(log);
+      if (value > 0 && Number.isFinite(value)) return number(value,8);
+      const exponent = Math.floor(log / Math.LN10);
+      const mantissa = Math.exp(log - exponent * Math.LN10);
+      return mantissa.toFixed(6) + ' × 10^' + exponent;
+    }
+    function csvRows(result) {
+      const i = result.input;
+      return [
+        ['Isotope Effect Calculator','Harmonic ZPE-only equilibrium approximation'],
+        ['Convention','alpha_B/A = (H/L)_B / (H/L)_A'],
+        ['Exchange','H_A + L_B -> H_B + L_A'],
+        ['Quantity','Value','Unit'],
+        ['Light effective molar mass',i.mL,'g/mol'],['Heavy effective molar mass',i.mH,'g/mol'],
+        ['State A force constant',i.FA,'N/m'],['State B force constant',i.FB,'N/m'],['Temperature',i.T,'K'],
+        ['DeltaDeltaG_ZPE',result.ddg,'J/mol'],['ln(alpha_B/A)',result.lnAlpha,'dimensionless'],
+        ['1000 ln(alpha_B/A)',number(1000*result.lnAlpha,15),'per mil'],
+        ['alpha_B/A',Number.isFinite(result.alpha) && result.alpha>0 ? result.alpha : factorFromLog(result.lnAlpha),'dimensionless'],
+        ['alpha_A/B',Number.isFinite(result.reciprocal) && result.reciprocal>0 ? result.reciprocal : factorFromLog(-result.lnAlpha),'dimensionless'],
+        [],['Isotope','State','Mass (kg)','Angular frequency (rad/s)','Wavenumber (cm^-1)','ZPE (J/oscillator)','ZPE (kJ/mol)'],
+        ...result.energies.map(e=>[e.isotope,e.state,e.mass,e.omega,e.wavenumber,e.zpe,e.molarZpe/1000]),
+        [],['Model limits','Single effective mode; thermal excitation, other modes, rotation, translation, anharmonicity and nonideal activities omitted.'],
+        ['Planck constant',H,'J s'],['Avogadro constant',NA,'mol^-1'],['Boltzmann constant',KB,'J/K']
+      ].map(row=>row.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n');
+    }
+    const api = {calculate,number,factorFromLog,csvRows,constants:{H,HBAR,NA,KB,R,C_CM},DEFAULTS};
+    if (typeof module !== 'undefined' && module.exports) module.exports = api;
+    if (typeof document === 'undefined') return;
+
+    const $ = id => document.getElementById(id);
+    let current = null;
+    function plot(result) {
+      const {T} = result.input, log = result.lnAlpha;
+      const left=65,right=440,top=13,bottom=113;
+      const x = ratio => left + (ratio-.5)/1.5*(right-left);
+      // Normalize before plotting to avoid overflow at extreme valid values.
+      const sign = Math.sign(log), extent=2.2, origin = sign===0 ? (top+bottom)/2 : sign>0 ? bottom : top;
+      const y = ratio => sign===0 ? (top+bottom)/2 : origin - sign*(1/ratio)/extent*(bottom-top);
+      const path = Array.from({length:101},(_,i)=>{const ratio=.5+1.5*i/100; return (i?'L':'M')+x(ratio).toFixed(2)+','+y(ratio).toFixed(2);}).join(' ');
+      const tickValue = log === 0 ? 0 : 2000*log;
+      const labelY = y(.5)+4;
+      $('chart-content').innerHTML = `
+        <line x1="${left}" y1="${origin}" x2="${right}" y2="${origin}" stroke="#bdcbc1"/>
+        <line x1="${left}" y1="${top}" x2="${left}" y2="${bottom}" stroke="#bdcbc1"/>
+        <text x="${left-8}" y="${origin+4}" text-anchor="end" fill="#5c6e68" font-size="10">0</text>
+        ${log===0?'':`<text x="${left-8}" y="${labelY}" text-anchor="end" fill="#5c6e68" font-size="10">${number(tickValue,4)}</text>`}
+        <path d="${path}" fill="none" stroke="#27675b" stroke-width="2.5"/>
+        <line x1="${x(1)}" y1="${y(1)}" x2="${x(1)}" y2="${bottom}" stroke="#9aab9e" stroke-dasharray="3 4"/>
+        <circle cx="${x(1)}" cy="${y(1)}" r="4.5" fill="#a95731" stroke="#fff" stroke-width="2"/>
+        ${[.5,1,2].map(r=>`<text x="${x(r)}" y="133" text-anchor="middle" fill="#5c6e68" font-size="11">${number(T*r,5)}</text>`).join('')}
+        <text x="${right}" y="151" text-anchor="end" fill="#5c6e68" font-size="10">Temperature / K</text>`;
+      $('temperature-chart').hidden=false; $('chart-empty').hidden=true;
+    }
+    function render(result) {
+      current = result;
+      $('result-card').classList.remove('invalid');
+      $('alpha').textContent = factorFromLog(result.lnAlpha);
+      $('ddg').textContent = number(result.ddg);
+      $('reciprocal').textContent = factorFromLog(-result.lnAlpha);
+      $('lnalpha').textContent = number(result.lnAlpha);
+      $('per-mil').textContent = number(1000*result.lnAlpha);
+      $('preference').textContent = result.lnAlpha===0 ? 'No isotope preference: α = 1 in this model.' :
+        'The heavy isotope favors state ' + (result.lnAlpha>0?'B':'A') + ' relative to the light isotope, at ' + number(result.input.T) + ' K.';
+      $('energy-rows').innerHTML=result.energies.map(e=>`<tr><td><span class="pill">${e.isotope}</span> State ${e.state}</td><td>${e.mass.toExponential(6)}</td><td>${number(e.wavenumber)}</td><td>${e.zpe.toExponential(6)}</td><td>${number(e.molarZpe/1000)}</td></tr>`).join('');
+      $('download').disabled=false; $('copy').disabled=false;
+      plot(result);
+    }
+    function update() {
+      const input = {};
+      for(const key of Object.keys(DEFAULTS)) { input[key]=$(key).valueAsNumber; $(key).removeAttribute('aria-invalid'); }
+      $('action-status').textContent='';
+      $('celsius').replaceChildren(document.createTextNode(Number.isFinite(input.T)?number(input.T-273.15,6)+' °C':'— °C'),document.createElement('br'),document.createTextNode('Absolute temperature in kelvin.'));
+      try { render(calculate(input)); $('input-error').hidden=true; return true; }
+      catch(error) {
+        current=null; $('input-error').textContent=error.message; $('input-error').hidden=false;
+        if(error.field) $(error.field).setAttribute('aria-invalid','true');
+        $('result-card').classList.add('invalid');
+        for(const id of ['alpha','ddg','reciprocal','lnalpha','per-mil']) $(id).textContent='—';
+        $('preference').textContent='Enter valid inputs to calculate.';
+        $('energy-rows').innerHTML='<tr><td colspan="5" style="text-align:left;color:#5c6e68">Results will appear after all inputs are valid.</td></tr>';
+        $('download').disabled=true; $('copy').disabled=true;
+        $('chart-content').replaceChildren(); $('temperature-chart').hidden=true; $('chart-empty').hidden=false;
+        return false;
+      }
+    }
+    $('calculator').addEventListener('submit',event=>{event.preventDefault(); if(!update()) {const field=document.querySelector('[aria-invalid="true"]'); if(field) field.focus();}});
+    $('calculator').addEventListener('input',update);
+    $('swap').addEventListener('click',()=>{const f=$('FA').value; $('FA').value=$('FB').value; $('FB').value=f; update();});
+    $('reset').addEventListener('click',()=>{for(const [key,value] of Object.entries(DEFAULTS)) $(key).value=value; update();});
+    $('download').addEventListener('click',()=>{
+      if(!current) return;
+      const url=URL.createObjectURL(new Blob(['\uFEFF'+csvRows(current)],{type:'text/csv;charset=utf-8'}));
+      const link=document.createElement('a'); link.href=url; link.download='isotope-effect-results.csv';
+      document.body.appendChild(link); link.click(); link.remove(); setTimeout(()=>URL.revokeObjectURL(url),1000);
+      $('action-status').textContent='CSV downloaded.';
+    });
+    $('copy').addEventListener('click',async()=>{
+      if(!current) return;
+      const r=current, i=r.input;
+      const summary=`Isotope Effect Calculator — harmonic ZPE-only model\nInputs: mL=${i.mL} g/mol; mH=${i.mH} g/mol; FA=${i.FA} N/m; FB=${i.FB} N/m; T=${i.T} K\nalpha_B/A = (H/L)_B / (H/L)_A = ${factorFromLog(r.lnAlpha)}\nDeltaDeltaG_ZPE = ${number(r.ddg,12)} J/mol\nln(alpha_B/A) = ${number(r.lnAlpha,12)}\nSingle-mode equilibrium approximation; thermal and other contributions omitted.`;
+      try {await navigator.clipboard.writeText(summary); $('action-status').textContent='Summary copied.';}
+      catch { $('action-status').textContent='Copy is unavailable here. Use the CSV download.'; }
+    });
+    update();
+  })();
+  </script>
+</body>
+</html>
