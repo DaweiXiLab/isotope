@@ -2,55 +2,7 @@
 
 A self-contained website that estimates an equilibrium isotope separation factor from two effective molar masses, two force constants, and temperature, using a harmonic zero-point-energy (ZPE) approximation.
 
-**Open `index.html` in a browser to use it immediately. Only `index.html` is required for the website.** It contains the styling, equations, and calculation code. No installation, server, external scripts, or internet connection is needed for the calculator.
 
-## Publish it on GitHub Pages — no terminal needed
-
-These instructions use a public project repository named `isotope-effect-calculator`.
-
-1. **Extract the downloaded ZIP.** Find `index.html` and this `README.md` inside the extracted folder. Do not upload the ZIP itself as the website.
-2. **Sign in to [GitHub](https://github.com).** Create an account first if needed.
-3. **Create a repository.** Click **+ → New repository**, or visit [github.com/new](https://github.com/new).
-4. **Enter the repository details.**
-   - Repository name: `isotope-effect-calculator`
-   - Description (optional): `Equilibrium isotope fractionation calculator using a harmonic zero-point-energy model`
-   - Visibility: **Public**
-   - Turn **Add README** on, then click **Create repository**.
-5. **Upload the website.** In the repository's **Code** tab, choose **Add file → Upload files**. Drag `index.html` into the upload area. It must be at the repository's top level, not inside another folder. You can also upload this `README.md` to replace the initial README and include the optional `model.test.cjs` calculation tests.
-6. **Save the upload.** Enter a commit message such as `Add isotope effect calculator`. Choose to commit directly to `main`, then click **Commit changes**.
-7. **Enable the website.** Open the repository's **Settings → Pages**. Under **Build and deployment**, set:
-
-   | Setting | Value |
-   | --- | --- |
-   | Source | Deploy from a branch |
-   | Branch | main |
-   | Folder | / (root) |
-
-   Click **Save**. If your default branch has a different name, select that branch instead.
-8. **Wait for deployment.** Give GitHub a few minutes, then refresh **Settings → Pages**. Click **Visit site** when it appears. The **Actions** tab shows the deployment progress and any errors.
-9. **Open and share the public address:**
-
-   ```text
-   https://YOUR-USERNAME.github.io/isotope-effect-calculator/
-   ```
-
-   Replace `YOUR-USERNAME` with your GitHub username. The address is also shown in **Settings → Pages**. A GitHub account is not required to use the published calculator.
-
-GitHub Pages supports public repositories on GitHub Free. Creating a public repository and enabling Pages are separate steps; complete both. You do not need to purchase a domain.
-
-### Update the website later
-
-Upload a replacement `index.html` using **Add file → Upload files** and commit the change to the publishing branch. GitHub Pages republishes the site. For a small text edit, open `index.html` on GitHub, select the pencil/edit control, edit the text, and commit the change. Refresh the public site after the deployment completes; use a hard refresh if an old version remains cached.
-
-### If you see a 404
-
-- Confirm the name is exactly `index.html`, in lowercase, and not `index.html.txt`.
-- Confirm it is at the top level of the publishing branch, rather than inside an uploaded folder.
-- Confirm **Settings → Pages** uses **main** and **/ (root)**, or your actual publishing branch.
-- Check the **Actions** tab for the Pages deployment result and allow a few minutes for the first deployment.
-- Use the URL shown in **Settings → Pages**, including the repository name for this project site.
-
-Official instructions: [Create a GitHub Pages site](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site) and [configure a publishing source](https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site). Instructions checked October 15, 2026.
 
 ## Inputs
 
