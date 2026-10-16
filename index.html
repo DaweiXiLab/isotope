@@ -31,8 +31,8 @@
             <div class="input-grid">
               <div class="field"><label for="mL">Light effective mass <span class="symbol">m<sub>L</sub></span></label><div class="input-box"><input id="mL" name="mL" type="number" step="any" value="6" required aria-describedby="mass-help"><span class="unit">g/mol</span></div></div>
               <div class="field"><label for="mH">Heavy effective mass <span class="symbol">m<sub>H</sub></span></label><div class="input-box"><input id="mH" name="mH" type="number" step="any" value="7" required aria-describedby="mass-help"><span class="unit">g/mol</span></div></div>
-              <div class="field"><label for="FA">State A force constant <span class="symbol">F<sub>A</sub></span></label><div class="input-box"><input id="FA" name="FA" type="number" step="any" value="100" required><span class="unit">N/m</span></div><small>Reference environment</small></div>
-              <div class="field"><label for="FB">State B force constant <span class="symbol">F<sub>B</sub></span></label><div class="input-box"><input id="FB" name="FB" type="number" step="any" value="200" required><span class="unit">N/m</span></div><small>Comparison environment</small></div>
+              <div class="field"><label for="FA">State A force constant <span class="symbol">F<sub>A</sub></span></label><div class="input-box"><input id="FA" name="FA" type="number" step="any" value="20" required><span class="unit">N/m</span></div><small>Reference environment</small></div>
+              <div class="field"><label for="FB">State B force constant <span class="symbol">F<sub>B</sub></span></label><div class="input-box"><input id="FB" name="FB" type="number" step="any" value="100" required><span class="unit">N/m</span></div><small>Comparison environment</small></div>
               <div class="temperature"><div class="field"><label for="T">Temperature <span class="symbol">T</span></label><div class="input-box"><input id="T" name="T" type="number" step="any" value="298.15" required><span class="unit">K</span></div></div><p id="celsius">25.00 °C<br>Absolute temperature in kelvin.</p></div>
             </div>
             <p class="input-note" id="mass-help">Use effective or reduced molar masses for the vibration modeled. The same mass pair is used in both states. Default values are illustrative.</p>
@@ -91,7 +91,7 @@
       const {mL, mH, FA, FB, T} = input;
       for (const key of Object.keys(DEFAULTS)) {
         if (typeof input[key] !== 'number' || !Number.isFinite(input[key]) || input[key] < 0) {
-          const error = new RangeError(LABELS[key] + ' must be a finite number greater than zero.');
+          const error = new RangeError(LABELS[key] + ' must be a finite number.');
           error.field = key; throw error;
         }
       }
@@ -111,8 +111,8 @@
       const invMassDiff = ((mH - mL) / mH) / (Math.sqrt(ML) * (1 + Math.sqrt(mL / mH)));
       const ddg = -0.5 * HBAR * NA * sqrtForceDiff * invMassDiff;
       const lnAlpha = -(ddg / R) / T;
-      if (![ML,MH].every(x => Number.isFinite(x) && x > 0) ||
-          !energies.every(e => [e.omega,e.wavenumber,e.zpe,e.molarZpe].every(x => Number.isFinite(x) && x > 0)) ||
+      if (![ML,MH].every(x => Number.isFinite(x) && x >= 0) ||
+          !energies.every(e => [e.omega,e.wavenumber,e.zpe,e.molarZpe].every(x => Number.isFinite(x) && x >= 0)) ||
           !Number.isFinite(ddg) || !Number.isFinite(lnAlpha)) {
         throw new RangeError('These inputs exceed the supported numerical range. Use less extreme values.');
       }
@@ -121,7 +121,6 @@
 
     function number(value, digits=7) {
       if (!Number.isFinite(value)) return 'Outside numeric range';
-      if (value === 0) return '0';
       const abs = Math.abs(value);
       return abs >= 1e7 || abs < 1e-4 ? value.toExponential(digits-1) : String(Number(value.toPrecision(digits)));
     }
